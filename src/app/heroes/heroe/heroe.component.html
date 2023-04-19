@@ -1,0 +1,21 @@
+<h1>{{nombre}}</h1>
+<dl>
+    <td>Nombre:</td>
+    <dd>{{nombre}}</dd>
+
+    <td>Edad:</td>
+    <dd>{{edad}}</dd>
+
+    <td>Funcion:</td>
+    <dd>{{obtenerNombre()}}</dd>
+
+    <td>Capitalizado:</td>
+    <dd>{{nombreCapitalizado}}</dd>
+
+</dl>
+<!-- EL BOTON 'Cambiar Heroe' SE MOTRARÁ SOLO SI SE CUMPLE LA CONDICIÓN DEL *ngIf, QUE EN ESTE CASO SI EL NOMBRE ES DIFERENTE A 'SPIDERMAN' RETORNA 'TRUE' Y SE MUESTRA ESTE BOTON. DE LO CONTRARIO SI EL NOMBRE ES 'SPIDERMAN 'RETORNA 'FALSE' Y SE DESTRUYE ESTE BOTON. -->
+<button *ngIf="nombre !== 'Spiderman'" (click)="cambiarNombre()">Cambiar Heroe</button>
+<!-- DE LA MISMA FORMA PASA CON ESTE BOTON, PERO EN ESTE CASO DEPEDIENDO SI LA EDAD ES DIFERENTE DE 19 -->
+<button *ngIf="edad !== 19" (click)="cambiarEdad()">Cambiar Edad</button>
+
+<button (click)="Reset()">Resetear</button>

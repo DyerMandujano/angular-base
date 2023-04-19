@@ -1,0 +1,41 @@
+<p>Listado de Heroes</p>
+
+<ul *ngFor="let heroe of heroes; let i = index ">
+    <li>{{i+1}}. {{heroe}}</li>
+</ul>
+
+<!-- PRIMERA FORMA: BORRANDO HEROE Y ALMACENANDO EN UNA LISTA -->
+<!-- <div *ngIf="heroedelete.length >= 1 ">
+    <h3>Heroe Borrado</h3>
+    <ul *ngFor="let item of heroedelete; let i = index ">
+        <span>{{item}}</span>
+    </ul>
+
+</div> -->
+
+<!-- SEGUNDA FORMA: BORRANDO HEROE SIN ALMACENARLO EN UNA LISTA -->
+<!-- NOTA: TAMBIEN EN EL *ngIf SE LE PUEDE COLOCAR SOLO EL 'heroedelete2', YA QUE ESTA DIRECTIVA ES LO SUFICIENTEMENTE LISTA PARA SABER CUANDO ESTA VARIABLE DEVUELVA UN STRING VACIO, NULL,FALSE O UNDEFINED -->
+<!-- ES DECIR, LA OTRA MANERA SERIA LA SIGUIENTE:
+     -EN ESTA LINEA DEL ngIf DEVUELVE FALSE , PORQUE POR DEFECTO EN EL ARCHIVO TS LA VARIABLE 'heroedelete2' LA ESTAMOS DEFINIENDO COMO UN STRING VACIO Y POR LO TANTO ESTE NGIF RETORNA FALSE Y POR ESTA RAZON NO SE MOTRARIA EN LA PAGINA WEB.
+<div *ngIf="heroedelete2">
+    <h3>Heroe Borrado: <small>{{heroedelete2}}</small></h3>
+</div>
+-->
+<!-- EN SINTESIS, LA DIRECTIVA *ngIf MANEJA DOS TIPOS DE CASOS : RESULTADO POSITIVO O NEGATIVO. SI EL RESULTADO ES POSITIVO, SE MOSTRARÁ LA ETIQUETA EN CUESTION. DE LO CONTRARIO SI EL RESULTADO ES NEGATIVO, NO SE MOSTRARÁ LA ETIQUETA EN CUESTION. 
+EN ESTE CASO, ESTAMOS UTILIZANDO TAMBIEN LA CONDICIONAL 'ELSE'. PARA ELLO DESPUES DE COLOCAR LA CONDICION DEL IF LO TERMINAMOS CON UN ';' Y A LA DERECHA DE ESTA COLOCAMOS EL 'else' CON EL NOMBRE DEL TEMPLATE(ng-template) QUE DESEAMOS MOSTRAR que en este caso es 'nadaBorrado'. SINTAXIS DEL ELSE: ....; else nombre_template
+POR LO QUE TENDRIAMOS LAS SIGUIENTES CONDICIONES: SI EL 'heroedelete2' TIENE ALMACENADO ALGÚN VALOR, ESTE 'DIV' SERÁ MOSTRADO EN PANTALLA. DE LO CONTRARIO, EL TEMPLATE DEL ELSE LLAMADO 'nadaBorrado' SE MOSTRARÁ EN PANTALLA  -->
+<div *ngIf="heroedelete2; else nadaBorrado">
+    <h3>Heroe Borrado: <small>{{heroedelete2}}</small></h3>
+</div>
+
+<!--EL 'ng-template' es un contenedor parecido al DIV, la diferecia radica en q este ng-template no se construye en la pagina Web y no afectaria a los estilos o a la estructura HTML que ya se tiene.  
+Adicionalmente, se puede colocar una referencia local de esta manera: #nom_ref_local.
+Esto nos sirve para poder enlazar un else que hayamos declarado anteriomente en una etiqueta realizando la combinación con un ngIf. ESTE NOMBRE DE REFERENCIA LOCAL DEBE SER IGUAL AL NOMBRE DEL TEMPLATE COLOCADO CUANDO SE DECLARÓ EN LA COMBINACIÓN DEL IF - ELSE
+(PARA QUE SE ENTIENDA: EL NOMBRE DEL ELSE DE LA LINEA 27 TIENE QUE SER IGUAL AL NOMBRE DE LA LINEA 35)-->
+<ng-template #nadaBorrado>
+    <h3>No ha borrado nada</h3> 
+</ng-template>
+
+
+<button *ngIf="heroes.length>0 " (click)="deleteHeroe()">Borrar Heroe</button>
+<button (click)="ResetHeroes()">Resetear Heroes</button>
