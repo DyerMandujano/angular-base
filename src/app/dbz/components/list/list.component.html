@@ -1,0 +1,31 @@
+<h4>Listado</h4>
+<ul class="list-group">
+  <!-- PARA PODER AGREGARLE NUMEROS EN ORDEN AL INICIO DE CADA PERSONAJE, DECLARAMOS UNA VARIABLE 'i' Y LE ASIGNAMOS EL OBJETO 'index' QUE YA SE ENCUENTRA DEFINIDO EN EL *ngFor POR DEFECTO. 
+  ES DECIR, CON EL OBJETO 'index' YA CREADO POR DEFECTO PODEMOS EXTRAER EL INDICE DEL *ngFor Y SOLO LO ASIGNAMOS A UNA NUEVA VARIABLE QUE EN ESTE CASO ES 'i'-->
+  <li *ngFor="let character of characterList; 
+      let i  = index; 
+      let isFirst = first;
+      let isLast =last;
+      let isEven = even;
+      let isOdd = odd" 
+
+      class="list-group-item" 
+      [ngClass]="{
+      'list-group-item-success':isFirst,
+      'list-group-item-danger':isLast
+      }">
+  <span class="text-primary">{{i+1}}. </span>
+  <span>{{character.name}} - </span>
+  <strong>Power: </strong><span> {{character.power}}</span>
+  
+  </li>
+  <!-- NOTA: El [ngClass] Nos sirve para COLOCAR CLASES DE CSS DE MANERA CONDICIONAL. 
+    ES POR ELLO QUE EN LA LINEA 14, ESTAMOS COLOCANDO UN ATRIBUTO DE BOOTSTRAP EN EL CUAL
+    EL PRIMERO DE LA LISTA TENGA COMO CLASE 'list-group-item-success' 
+    Y EN LA LINEA 15, EL ULTIMO DE LA LISTA TENGA COMO CLASE 'list-group-item-danger' -->
+
+<!-- NOTA2: CUANDO UTILIZAMOS UNA ETIQUETA CON CORCHETES, POR EJEMPLO '[class]',
+LE ESTAMOS DICIENDO A ANGULAR QUE TOME EL CONTROL Y LO QUE LE ASIGNEMOS VA A SER UNA EXPRESION DE JAVASCRIPT. 
+POR EJEMPLO EN LA LINEA 12 PODEMOS CAMBIARLO POR [class] = "'list-group-item'" Y FUNCIONARIA DE LA MISMA MANERA-->
+ 
+</ul>
