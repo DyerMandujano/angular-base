@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Character } from '../../interfaces/character.interface';
 
 @Component({
@@ -18,4 +18,23 @@ export class ListComponent {
     power:50
     }
   ]
+
+  //EL 'EventEmitter<T>' ES FLEXIBLE YA QUE PUEDE EMITIR STRINGS, NUMBERS,ETC. PORQUE ES DE TIPO GENERICO '<T>'
+  //Utilizamos la interfaz 'EventEmitter' PORQUE VA A EMITIR INDICES DE TIPO 'number' ES POR ELLO Q COLOCAMOS DENTRO DE LOS '<>'.
+  //LUEGO LA VARIABLE 'onDelete' SERÁ IGUALADA A UNA NUEVA INSTANCIA DEL 'EventEmitter'
+  //*COLOCAMOS EL DECORADOR ' @Output()' PARA QUE EL MAIN-PAGE PUEDA CONECTARSE Y ESCUCHAR LA VARIABLE 'onDelete'
+  //!NOTA: DENTRO DE LOS PARENTESIS DEL DECORADOR DEL 'Output', LE PODEMOS CAMBIAR DE NOMBRE A LA PROPIEDAD ESTABLECIDA. SIN EMBARGO, SI NO SE LE COLOCA NADA EN LOS PARENTESIS, VA A TOMAR POR DEFAULT EL NOMBRE DE LA PROPIEDAD YA DEFINIDA.
+  @Output()
+  public onDelete: EventEmitter<number> = new EventEmitter();
+
+
+onDeleteCharacter(indice:number):void{
+  //*Emitir el ID del Personaje
+  this.onDelete.emit(indice);
+  console.log({indice});
+  
+
+}
+
+
 }

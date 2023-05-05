@@ -1,6 +1,24 @@
 <h4>Agregar Personajes</h4>
-<form class="row">
-  <input type="text" class="form-control mb-2" placeholder="Nombre" />
-  <input type="number" class="form-control mb-2" placeholder="Poder" />
+
+<!-- NOTA: PARA UTILIZAR EL ngModel, debemos importar la liberia FormsModule de @angular/forms. POR LO TANTO NOS DIRIGIMOS AL dbz.module PARA REALIZAR ESTA IMPORTACIÓN .
+NOTA 2: EL ngModel Tambien ayuda a que cuando se envie el formulario no se recargue la pagina -->
+<!--El evento '(ngSubmit)' NOS SIRVE CON LA PROPAGACION DEL FORMULARIO, ES DECIR QUE AL MOMENTO DE DAR CLICK AL BOTON AGREGAR O AL DAR ENTER ENVIE LA INFORMACION, NO SE RECARGUE LA PAGINA Y ENTRE OTRAS COSAS.
+EN ESTE CASO LE ESTAMOS ASIGNANDO AL EVENTO '(ngSubmit)' EL METODO 'emitCharacter()'  -->
+<form class="row" (ngSubmit)="emitCharacter()">
+  <!-- En el ngModel estamos asociando un evento y un atributo al mismo tiempo ya que estamos utilizando la sintaxis de CAJA DE BANANAS, ES DECIR SE UTILIZA DOBLE CORCHETE Y DENTO DE ESTE UN PAR DE PARENTESIS CON LA PROPIEDAD 'ngModel'. A LA CAJA DE BANANAS TAMBIEN ES LLAMADO COMO EL TWO DATA BINDING. 
+  EN LA LINEA 6, LE ASIGNAMOS AL ngModel UN BINDING QUE EN ESTE CASO ES 'character.name' Y DE ESTA MANERA CUANDO SE LE PASE UN VALOR POR EL INPUT, ACTUALIZARÁ LA REFERENCIA DEL 'name' VACIA QUE SE ENCUENTRA EN EL OBJETO 'character' UBICADO EN EL add-character.component.ts -->
+  <!-- ASIMISMO, SI UTILIZAMOS ESTE 'ngModel', TAMBIEN DEBEMOS COLOCAR LA PROPIEDAD name PARA DEFINIR QUE ESTE INPUT ES PARTE DE ESTE FORMULARIO Y SABER QUE VALOR TIENE. POR LO CUAL A ESTE name LE DEBEMOS ASIGNAR LA PROPIEDAD 'name' DEL OBJETO 'character' -->
+  <input type="text" 
+  [(ngModel)]="character.name" 
+  name="name"
+  class="form-control mb-2" placeholder="Nombre" />
+  <!--  LE ASIGNAMOS AL ngModel UN BINDING QUE EN ESTE CASO ES 'character.power' Y DE ESTA MANERA CUANDO SE LE PASE UN VALOR POR EL INPUT, ACTUALIZARÁ LA REFERENCIA DEL 'power' VACIA QUE SE ENCUENTRA EN EL OBJETO 'character' UBICADO EN EL add-character.component.ts -->
+  <!-- ASIMISMO, SI UTILIZAMOS ESTE 'ngModel', TAMBIEN DEBEMOS COLOCAR LA PROPIEDAD name PARA DEFINIR QUE ESTE INPUT ES PARTE DE ESTE FORMULARIO Y SABER QUE VALOR TIENE. POR LO CUAL A ESTE name LE DEBEMOS ASIGNAR LA PROPIEDAD 'power' DEL OBJETO 'character' -->
+  <input type="number" 
+  [(ngModel)]="character.power" 
+  name = "power"
+  class="form-control mb-2" placeholder="Poder" />
   <button type="submit" class="btn btn-primary">Agregar</button>
+
+  <!-- <pre>{{character | json}}</pre> -->
 </form>
