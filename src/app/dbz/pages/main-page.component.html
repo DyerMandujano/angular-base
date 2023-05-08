@@ -11,7 +11,8 @@
         <!-- PARA ESCUCHAR EVENTOS SE COLOCAN '()'
         ES POR ELLO, QUE PARA ESCUCHAR UN EVENTO EN EL COMPONENTE 'dbz-list' CADA QUE VEZ QUE ELIMINO UN PERSONAJE, SE DEBE COLOCAR 'onDelete' ENTRE '()'.
         AL MOMENTO DE REALIZAR EL EVENTO (onDelete) DE ELIMINACION DEL PERSONAJE LE ASIGNAMOS EL METODO 'onDeleteCharacter' Y TIENE COMO PARAMETRO '$event' PARA PODER RECIBIR EL INDICE QUE SE ESTA EMITIENDO EN EL HIJO Y PUEDA OBTENERLO EL PADRE. ASIMISMO TYPESCRIPT SABE QUE EL '$event' TIENE QUE SER DE TIPO 'number' PORQUE SINO GENERA ERROR EN CODIGO. -->
-        <dbz-list [listadoPersonajes]="dbzService.characters" (onDelete)="dbzService.onDeleteCharacter($event)"></dbz-list>
+        <dbz-list [listadoPersonajes]="characters" 
+                  (onDelete)="onDeleteCharacter($event)"></dbz-list>
         
         
     </div>
@@ -19,6 +20,6 @@
         <!--PARA ESCUCHAR EVENTOS SE COLOCAN '()'
         ES POR ELLO, QUE PARA ESCUCHAR UN EVENTO EN EL COMPONENTE 'dbz-add-character' CADA QUE VEZ QUE EMITA UN NUEVO PERSONAJE SE DEBE COLOCAR 'onNewCharacter' ENTRE '()'.
         AL MOMENTO DE REALIZAR EL EVENTO (onNewCharacter) DE EMITIR EL PERSONAJE LE ASIGNAMOS EL METODO 'addNewCharacter' Y TIENE COMO PARAMETRO '$event' PARA PODER RECIBIR EL OBJETO QUE SE ESTA EMITIENDO EN EL HIJO Y PUEDA OBTENERLO EL PADRE. ASIMISMO TYPESCRIPT SABE QUE EL '$event' TIENE QUE SER DE TIPO 'character' PORQUE SINO GENERA ERROR EN CODIGO. -->
-        <dbz-add-character (onNewCharacter)="dbzService.addNewCharacter($event)"></dbz-add-character>
+        <dbz-add-character (onNewCharacter)="onNewPersonaje($event)"></dbz-add-character>
     </div>
 </div>
